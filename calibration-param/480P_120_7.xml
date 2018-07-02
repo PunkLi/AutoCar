@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<opencv_storage>
+
+  <cam_id>/dev/my_video3</cam_id>
+  <exposure_time>100</exposure_time>
+
+  <ptz_camera_x>0</ptz_camera_x>
+  <ptz_camera_y>5</ptz_camera_y>
+  <ptz_camera_z>17.5</ptz_camera_z>
+  <barrel_ptz_offset_y>0</barrel_ptz_offset_y>
+
+  <z_scale>1</z_scale>
+  
+  <Camera_Matrix type_id="opencv-matrix">
+    <rows>3</rows>
+    <cols>3</cols>
+    <dt>d</dt>
+    <data>
+      	453.773960086243
+      	0.
+      	342.23172463335
+    	  0.
+    	  453.627628244456
+    	  220.162733432523
+      	0.
+      	0.
+	      1.
+    </data>
+  </Camera_Matrix>
+  <Distortion_Coefficients type_id="opencv-matrix">
+    <rows>5</rows>
+    <cols>1</cols>
+    <dt>d</dt>
+    <data>
+     	 -0.0294212474228152
+        0.148704586731553
+	     -0.00195653694763599
+        0.00395051577108021
+       -0.161078048592932
+    </data>
+  </Distortion_Coefficients>
+</opencv_storage>
