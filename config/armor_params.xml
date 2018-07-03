@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<opencv_storage>
+    <!--Parameter for Enemy Color, 0(default) means for red, otherwise blue-->
+    <enemy_color>0</enemy_color>
+    <video_id>../video/armor_20180517_112917.avi</video_id>
+
+    <!--Parameter for Debug--> 
+    <show_image>1</show_image>
+    <save_result>1</save_result>
+
+    <!--Parameter for Armor Detection System-->
+    <light_threshold_val>200</light_threshold_val>
+    
+    <red_color_diff>40</red_color_diff>
+    <blue_color_diff>70</blue_color_diff>
+
+    <light_min_aspect_ratio>1.2</light_min_aspect_ratio>
+    <light_max_aspect_ratio>10.0</light_max_aspect_ratio> 
+
+    <light_min_area>20</light_min_area>
+    <light_max_area>0.04</light_max_area>
+
+    <light_max_angle>35</light_max_angle>
+
+    <light_max_angle_diff>40</light_max_angle_diff>
+    <light_max_height_diff>0.5</light_max_height_diff>
+    <light_max_width_diff>0.5</light_max_width_diff>
+
+    <armor_min_ratio>1.2</armor_min_ratio>
+    <armor_max_ratio>5.0</armor_max_ratio>
+
+    <armor_light_angle_diff>35</armor_light_angle_diff>
+
+    <armor_max_angle>30</armor_max_angle>
+    <armor_min_area>50</armor_min_area>
+    <armor_max_area>32000</armor_max_area> 
+
+    <filter_armor_area>200</filter_armor_area>
+
+    <armor_max_aspect_ratio>3.8</armor_max_aspect_ratio>
+    <armor_max_pixel_val>100.0</armor_max_pixel_val>
+    <armor_max_stddev>40</armor_max_stddev>
+    <width>40</width>
+    <height>50</height>
+
+</opencv_storage>
