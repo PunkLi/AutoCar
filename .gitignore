@@ -28,7 +28,7 @@
 *.app
 
 # my_ruls
-#build/*
-#video/*
-#extra/armor_sample/build/*
-#extra/train/build/*
+build/*
+video/*
+extra/armor_sample/build/*
+extra/train/build/*
