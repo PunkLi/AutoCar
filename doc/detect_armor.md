@@ -1,30 +1,25 @@
 
-[software framework]
+# software framework
 - 需要做好多线程与数据共享
 - std::thread camera_thread
 - std::thread serial_thread
 - std::thread vision_mul_thread
 - 需要做好模块的耦合
 - 
-[algorithm]
-- 1
-- [分割]
+# algorithm
+## 分割
 - 根据 color 和 light 分别进行二值化
 - 形态学: 膨胀, 开运算 (待加入, 对快递移动会有影响)
-- 筛选lights: 如果亮度 rect 里有 color 分量, 则为灯条, 包括灯柱 [待优化]
-- 
-- 2 
-- [Filterlights]
+- 筛选lights: 如果亮度 rect 里有 color 分量, 则为灯条, 包括灯柱 
+## Filterlights
 - adjustrect 调整灯条的角度和与长宽
 - 针对高速移动带有拖影的灯条进行筛选
 - 针对灯条细小的情况,较为理想进行筛选
-- 包括:
+    ### 包括:
 - 根据灯条的数值角度
 - 根据灯条自身的纵横比例
 - 根据灯条的最大面积和最小面积
-- 
-- 3
-- [匹配lights]
+## 匹配lights
 - 左右灯条的角度数值差(左边为负, 右边为正)
 - 左右灯条的高度差 (已取消)
 - 左右灯条的宽度差 (已取消)
@@ -40,15 +35,14 @@
 - [6] 其他边界情况
 - 
 - 4
-- [筛选armor]
+## 筛选armor
 - 进行一次去重操作
 - 对大面积装甲板计算mean与stddev确定armor[待优化]
 - 对小面积装甲板不计算
-- 针对不同速度移动下的装甲板分类讨论mean与sttdev[待添加]
-- SVM [待添加]
-- 
-- 5
-- [确定要击打的装甲板]
+- 针对不同速度移动下的装甲板分类讨论mean与sttdev
+- SVM
+
+## 确定要击打的装甲板
 - 根据 armor.size.area() 与 armor.angle 判断[待优化]
 - 根据速度信息筛选一下
 - 
