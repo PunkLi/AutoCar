@@ -11,7 +11,7 @@
 
 int main()
 {
-    cv::VideoCapture capture_camera_forward("../../../video/2armor3.avi");
+    cv::VideoCapture capture_camera_forward("../../../video/armor_20180429_011146.avi");
     int index = 0;
     cv::Mat frame_forward;
     armor_sample armor_detector;

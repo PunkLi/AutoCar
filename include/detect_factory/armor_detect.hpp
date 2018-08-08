@@ -24,6 +24,8 @@
 using namespace cv;
 using namespace cv::ml;
 
+#define POINT_DIST(p1,p2) std::sqrt((p1.x-p2.x)*(p1.x-p2.x) + (p1.y-p2.y)*(p1.y-p2.y))
+
 namespace autocar
 {
 namespace vision_mul
