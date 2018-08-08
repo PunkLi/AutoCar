@@ -35,13 +35,11 @@ namespace autocar
 {
 namespace vision_mul
 {
-/**
- * @brief: 图像处理类, 有且只有一个
- */
+
 class ImageConsProd {
 public:
     /**
-     * @brief: 接收串口号, 摄像头参数配置文件 
+     * @brief: 接受一个摄像头参数配置文件 
      */
     ImageConsProd(std::string path) : param_file(path)
     {
@@ -66,7 +64,6 @@ public:
     void ImageConsumerCircle();
     
 public:
-    // int _fd2car;              // 串口号
     armor_pos armor_pos_;     // 装甲板信息
 private: 
     bool show_image;          // 调试选项

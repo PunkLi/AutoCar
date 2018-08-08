@@ -106,7 +106,6 @@ struct armor_info
 	}
 };
 
-
 } // namespace vision_mul
 } // namespace autocar
 

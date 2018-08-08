@@ -8,18 +8,16 @@
 
 #ifndef ARMOR_DETECT_H_
 #define ARMOR_DETECT_H_
-
+#include <iostream>
+#include <chrono>
+#include <ctype.h>
+#include <opencv2/ml.hpp>
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/video/tracking.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
-#include <iostream>
-#include <ctype.h>
 #include "detect_factory/armor_info.h"
 #include "slover/armor_recorder.hpp"
 #include "common/common_serial.h"
-#include <chrono>
-#include <opencv2/ml.hpp>
-#include "opencv2/imgproc/imgproc.hpp"
 
 using namespace cv;
 using namespace cv::ml;
@@ -30,10 +28,8 @@ namespace autocar
 {
 namespace vision_mul
 {
-	enum EnemyColor { RED = 0, BLUE = 1};
-/**
- * @brief: 装甲识别器
- */
+	enum class EnemyColor { RED = 0, BLUE = 1};
+
 class ArmorDetector
 {
 public:
