@@ -24,9 +24,6 @@
 using namespace cv;
 using namespace cv::ml;
 
-#define TRUNC_ABS(a) ((a) > 0 ? (a) : 0);												//其实是个ReLu函数
-#define POINT_DIST(p1,p2) std::sqrt((p1.x-p2.x)*(p1.x-p2.x) + (p1.y-p2.y)*(p1.y-p2.y))  //计算两点之间的距离
-
 namespace autocar
 {
 namespace vision_mul
@@ -42,22 +39,11 @@ public:
 		init_armorHist("../config/armor2ev0.jpg", "../config/armor2ev-3.jpg"); // load big armor
 		svm_big = StatModel::load<SVM>("../config/big_armor_model.yml");
 		svm_small = StatModel::load<SVM>("../config/armor_model.yml");
-		// 已经遗弃的预测部分
-		/*
-		predict_permission = 2; // 这个数字要可以变动的
-		last_[0] = cv::RotatedRect();
-		last_[1] = cv::RotatedRect();
-		*/
 	};
-	/**
-	 * @brief: 设置算法参数
- 	 */
     void setPara(const param_mul::armor_param & para) {
         _para = para;
     };
-	/**
- 	 * @brief: 加载模板(已遗弃)
- 	 */
+	
 	void init_armorHist(const std::string& small_armor_pic, 
 						const std::string& big_armor_pic)
 	{
@@ -88,13 +74,6 @@ public:
 	bool detect(cv::Mat & src, std::vector<armor_info> & armors_candidate);
 
 private:
-	/*
-	cv::RotatedRect predict() {
-		last_[0].center.x = 2*last_[0].center.x - last_[1].center.x;
-		last_[0].center.y = 2*last_[0].center.y - last_[1].center.y;
-		return last_[0];
-	}*/
-	
 	void DrawRotatedRect(cv::Mat &img, const cv::RotatedRect &rect, const cv::Scalar &color, int thickness) {    
 		cv::Point2f vertex[4];
 		rect.points(vertex);
@@ -173,19 +152,18 @@ private:
     cv::Mat show_lights_after_filter_;
     cv::Mat show_armors_befor_filter_;
     cv::Mat show_armors_after_filter_;
-	cv::RotatedRect last_[2];
-	int predict_permission;
 	std::chrono::steady_clock::time_point speed_test_start_begin_time;
 	
 	bool last_detect;
 	
 	std::vector<cv::RotatedRect> light_rects;
 	std::vector<armor_info> filte_rects;
-
+	
+	// 尝试过对1号步兵和2号英雄进行Hist的匹配分类
 	cv::Mat armor_1_hist;  // 1号步兵的 Hist
 	cv::Mat armor_2_hist;  // 2号英雄的 Hist
-	
 
+	// SVM效果会好很多，将来可以按照数字贴纸更细化的分类
 	Ptr<SVM> svm_big;
 	Ptr<SVM> svm_small;
 };

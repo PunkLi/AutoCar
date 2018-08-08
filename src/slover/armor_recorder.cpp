@@ -13,11 +13,14 @@ namespace autocar
 namespace slover
 {
 
-#define shoe_src_rect
+#define show_src_rect
 
 const int bullet_speed = 18;     
-const cv::Point ptoffset = cv::Point(22,0); // offset x → y ↓  
+const cv::Point ptoffset = cv::Point(22,0); // 子弹的偏移量 offset x → y ↓  
 
+/**
+ * @brief 定义一个距离函数，计算装甲片之间姿态的“距离”
+ */
 inline bool pos_distance(const vision_mul::armor_pos& pos1, const vision_mul::armor_pos& last_pos )
 {
     return std::sqrt((pos1.angle_x - last_pos.angle_x) * (pos1.angle_x - last_pos.angle_x) + 
@@ -28,7 +31,7 @@ inline bool pos_distance(const vision_mul::armor_pos& pos1, const vision_mul::ar
 vision_mul::armor_pos Armor_recorder::SlectFinalArmor(std::vector<vision_mul::armor_info> &armors, AngleSolver& angle_slover, AngleSolverFactory& angle_slover_factory, cv::Mat & src) 
 {
     std::vector<vision_mul::armor_pos> pos_vect;
-#ifdef shoe_src_rect
+#ifdef show_src_rect
     std::vector<vision_mul::armor_info> armor_vect;
 #endif
     vision_mul::armor_pos armor_pos_;
@@ -45,12 +48,11 @@ vision_mul::armor_pos Armor_recorder::SlectFinalArmor(std::vector<vision_mul::ar
                 armor_pos_.Flag = armor.state; // [1 2 3 4]
                 armor_pos_.angle_z = angle_slover._distance;
                 pos_vect.push_back(armor_pos_);
-                #ifdef shoe_src_rect
+                #ifdef show_src_rect
                 armor_vect.push_back(armor);
                 #endif
             }
-            else
-            {
+            else{
                 armor_pos_.Flag = 0;
                 armor_pos_.angle_z = angle_slover._distance;
             }
@@ -63,12 +65,11 @@ vision_mul::armor_pos Armor_recorder::SlectFinalArmor(std::vector<vision_mul::ar
                 armor_pos_.Flag = armor.state; // [1 2 3 4]
                 armor_pos_.angle_z = angle_slover._distance;
                 pos_vect.push_back(armor_pos_);
-                #ifdef shoe_src_rect
+                #ifdef show_src_rect
                 armor_vect.push_back(armor);
                 #endif
             }
-            else
-            {
+            else{
                 armor_pos_.Flag = 0;
                 armor_pos_.angle_z = angle_slover._distance;
             }
@@ -95,7 +96,7 @@ vision_mul::armor_pos Armor_recorder::SlectFinalArmor(std::vector<vision_mul::ar
                 idx = i;
             }
         }
-        #ifdef shoe_src_rect
+        #ifdef show_src_rect
              draw_rotated_rect(src, armor_vect[idx].rect,cv::Scalar(0,255,255),2);
         #endif
         return pos_vect[idx];

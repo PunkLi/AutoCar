@@ -20,7 +20,7 @@ namespace serial_mul
 
 CLinuxSerial serial(0);
 short Yaw    = 0;
-/*volatile*/ short Pitch  = 0;
+short Pitch  = 0;
 
 short get_yaw() 
 {
