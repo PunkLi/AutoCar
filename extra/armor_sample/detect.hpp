@@ -19,52 +19,20 @@
 
 using namespace cv;
 
-#define TRUNC_ABS(a) ((a) > 0 ? (a) : 0);												//其实是个ReLu函数
-#define POINT_DIST(p1,p2) std::sqrt((p1.x-p2.x)*(p1.x-p2.x) + (p1.y-p2.y)*(p1.y-p2.y))  //计算两点之间的距离
-
-
-	enum EnemyColor { RED = 0, BLUE = 1};
+enum EnemyColor { RED = 0, BLUE = 1};
 /**
  * @brief: 装甲识别器
  */
 class armor_sample
 {
 public:
-    armor_sample() {
-		// 已经遗弃的预测部分
-		/*
-		predict_permission = 2; // 这个数字要可以变动的
-		last_[0] = cv::RotatedRect();
-		last_[1] = cv::RotatedRect();
-		*/
-	};
-	/**
-	 * @brief: 设置算法参数
- 	 */
+    armor_sample() { };
     void setPara(const armor_param & para) {
         _para = para;
     };
-	/**
- 	 * @brief: 加载模板(已遗弃)
- 	 */
-	void initTemplate(const cv::Mat & _template, const cv::Mat & _template_small);
-	/**
- 	 * @brief: 检测API
-	 * @param: camera_src 
-	 * @param: vector<armor_info> candidate
-	 * @param: Armor_recorder
- 	 */
 	short detect(cv::Mat & src, int);
 
 private:
-	/*
-	cv::RotatedRect predict() {
-		last_[0].center.x = 2*last_[0].center.x - last_[1].center.x;
-		last_[0].center.y = 2*last_[0].center.y - last_[1].center.y;
-		return last_[0];
-
-	}*/
-	
 	void DrawRotatedRect(cv::Mat &img, const cv::RotatedRect &rect, const cv::Scalar &color, int thickness) {    
 		cv::Point2f vertex[4];
 		rect.points(vertex);

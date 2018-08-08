@@ -36,7 +36,7 @@ IN THE SOFTWARE.
 #include "utility/video_recoder.h"
 #include "utility/debug_utility.hpp"
 
-//#define USE_VIDEO
+// #define USE_VIDEO
 
 namespace autocar
 {
@@ -66,10 +66,10 @@ void ImageConsProd::ImageConsumer()
 #ifndef USE_VIDEO
     video_recoder recoder("../video", 640, 480);
 #endif
-    cv::Mat frame_forward;	// image of PTZ camera
+    cv::Mat frame_forward;
     cv::Mat frame_forward_src;
 
-    ArmorDetector armor_detector; // 因为构造函数关系，这样写应该也可以的
+    ArmorDetector armor_detector;
     slover::Armor_recorder armor_recorder;
     std::vector<armor_info> multi_armors;
  
@@ -132,10 +132,8 @@ void ImageConsProd::ImageConsumer()
         if(save_result)  // 使用视频不录像
             recoder.save_frame(frame_forward_src); // 录制
 #endif
-        //std::cout << std::endl;
 	}   // end while loop
 }
-
 
 } // namespace vision_mul
 } // namespace autocar

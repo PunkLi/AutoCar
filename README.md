@@ -1,4 +1,4 @@
-# AutoCar
+## AutoCar
 
 This program is detect the armor of robomaster robot, for Robomaster2018.
 
@@ -7,8 +7,6 @@ This program is detect the armor of robomaster robot, for Robomaster2018.
 目前版本的性能: 
 小装甲识别耗时20ms以下, 平均16ms, 偶尔会有跳变,不会超过30ms
 大装甲识别耗时平均在20ms, 产生跳变后, 耗时控制在 35ms以下
-
-不同的装甲片可以同时识别并进行分类, 不会产生相互影响.
 
 ### Software Requirements
 
@@ -19,7 +17,6 @@ This program is detect the armor of robomaster robot, for Robomaster2018.
 ### Build and Install
 
 ```shell
-cd autocar/
 mkdir build
 cd build
 cmake ..

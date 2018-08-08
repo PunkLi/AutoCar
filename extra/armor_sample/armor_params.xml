@@ -1,17 +1,7 @@
 <?xml version="1.0"?>
 <opencv_storage>
     <!--Parameter for Enemy Color, 0(default) means for red, otherwise blue-->
-    <!-- armor _ sample _ svm -->
-<!-- armor _ sample _ svm -->
-<!-- armor _ sample _ svm -->
-<!-- armor _ sample _ svm -->
-<!-- armor _ sample _ svm -->
-<!-- armor _ sample _ svm -->
-<!-- armor _ sample _ svm -->
-<!-- armor _ sample _ svm -->
-<!-- armor _ sample _ svm -->
     <enemy_color>0</enemy_color>
-    <!--Parameter for Debug--> 
     <!--Parameter for Armor Detection System-->
     <light_threshold_val>150</light_threshold_val>
     

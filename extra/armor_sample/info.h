@@ -100,6 +100,4 @@ struct armor_info
 		state = STILL;
 	}
 };
-
-
 #endif // ARMOR_INFO_H

@@ -13,15 +13,12 @@ int main()
 {
     cv::VideoCapture capture_camera_forward("../../../video/2armor3.avi");
     int index = 0;
-    cv::Mat frame_forward;	// image of PTZ camera
-    armor_sample armor_detector; // 因为构造函数关系，这样写应该也可以
+    cv::Mat frame_forward;
+    armor_sample armor_detector;
    
     while (true) {
-        
         capture_camera_forward >> frame_forward;
-
-		armor_detector.detect(frame_forward, index);	// 装甲识别,true有灯条 false 没有灯条
-
+		armor_detector.detect(frame_forward, index);
         try {
 		    imshow("result", frame_forward);
             cv::waitKey(1);
@@ -29,7 +26,6 @@ int main()
 		catch (cv::Exception e) {
 			std::cout << "show image error" << std::endl;
 		}
-        
-        cv::waitKey(0);  // 暂停用来调试
-	}   // end while loop
+        cv::waitKey(0);
+	}
 }
