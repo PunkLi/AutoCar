@@ -44,7 +44,7 @@ set_camera_exposure(usb_cam_id, exposure_time);  // 关于usb_cam_id，可以参
 在分类讨论的过程中，我们发现可以简单地对Armor速度分级，比如两个几乎正方形甚至两个平躺的长方形匹配成一个Armor我们就认为它是中速移动甚至快速移动的。检测Armor的移动速度对后面的预测等工作都很有帮助。这部分写成了一个枚举：
 ```c++
 include/detect_factory/armor_info.hpp：line 92
-enum class Armor_Twist { STILL = 1, LOW_MOVE = 2, MID_MOVE = 3, FAST_MOVE = 4 }; // 速度信息
+enum Armor_Twist { STILL = 1, LOW_MOVE = 2, MID_MOVE = 3, FAST_MOVE = 4 }; // 速度信息
 ```
 extra/armor_sample中的流程就只包含以上的部分，会识别很多Armor（正样本），也会识别很多两块Armor之间（负样本）。
 

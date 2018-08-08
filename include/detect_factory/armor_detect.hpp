@@ -28,7 +28,7 @@ namespace autocar
 {
 namespace vision_mul
 {
-	enum class EnemyColor { RED = 0, BLUE = 1};
+enum EnemyColor { RED = 0, BLUE = 1};
 
 class ArmorDetector
 {
