@@ -9,7 +9,7 @@ make
 ## armor_sample
 这是一份阉割的装甲识别，没有误识别筛选、没有直方图匹配、没有SVM、只有单纯的detect。为了方便，armor_sample通过读取视频来获得样本。
 
-在armor_sample/detect.cpp中700多行
+在`armor_sample/detect.cpp`中700多行
 ```c++
 if (makeRectSafe(target,img.size()) == true)
 {
@@ -37,7 +37,7 @@ String svm_file = "../output/armor_model.yml";
 String obj_det_filename = "../output/armor_descriptor.yml";
 String videofilename = "../../../video/armor_small.avi";
 ```
-而其他的都是opencv example自带的测试需要的代码，我并没有删除。最后我们只需要一个svm_file，并把它拷贝到config/文件夹下，需要小装甲和大装甲svm_file, 在/include/detect_factary/armor_detect.hpp中加载了这两个svm_file，加载svm还是比较长，但是检测耗时还能接受。
+而其他的都是opencv example自带的测试需要的代码，我并没有删除。最后我们只需要一个svm_file，并把它拷贝到config/文件夹下，需要小装甲和大装甲svm_file, 在`/include/detect_factary/armor_detect.hpp`中加载了这两个svm_file，加载svm还是比较长，但是检测耗时还能接受。
 ```c++
 class ArmorDetector
 {
@@ -50,5 +50,5 @@ public:
 	... ...
 };
 ```
-armor_descriptor.yml是extra/trian代码本身测试用的，我们在装甲识别用不到它。
+`armor_descriptor.yml`是`extra/trian`代码本身测试用的，我们在装甲识别用不到它。`/config/big_armor_model.yml`和`/config/armor_model.yml`这两个文件要自己训练并放到config/文件夹下面，然后程序才能跑起来。
 
