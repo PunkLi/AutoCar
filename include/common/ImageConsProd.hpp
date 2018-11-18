@@ -59,7 +59,7 @@ public:
         std::cout << "save_result: " << save_result << std::endl;
         #endif
     }
-    void ImageProductor();
+    void ImageProducer();
     void ImageConsumer();
     void ImageConsumerCircle();
     

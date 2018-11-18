@@ -17,6 +17,7 @@ include_directories(
 add_library(driver 
     camera_driver.cpp
     LinuxSerial.cpp
+    RMVideoCapture.cpp
 )
 
 target_link_libraries(driver

@@ -27,6 +27,7 @@ IN THE SOFTWARE.
 #include <vector>
 #include "common/ImageConsProd.hpp"
 #include "driver/camera_driver.h"
+#include "driver/RMVideoCapture.hpp"
 
 #include "detect_factory/armor_detect.hpp"
 
@@ -42,6 +43,35 @@ namespace autocar
 {
 namespace vision_mul
 {
+
+#define VIDEO_WIDTH  640
+#define VIDEO_HEIGHT 480
+#define BUFFER_SIZE 1
+
+volatile unsigned int prdIdx = 0;
+volatile unsigned int csmIdx = 0;
+
+struct ImageData {
+	Mat img;             // data come from camera
+	unsigned int frame;  // speed of img
+};
+
+ImageData capturedata[BUFFER_SIZE];   // Buffer of capture
+
+void ImageConsProd::ImageProducer() 
+{			
+	RMVideoCapture cap("/dev/video1", 3); 
+	cap.setVideoFormat(VIDEO_WIDTH, VIDEO_HEIGHT, 1);
+	cap.startStream();
+	cap.info();
+	while (true) {
+		while (prdIdx - csmIdx >= BUFFER_SIZE);
+		cap >> capturedata[prdIdx % BUFFER_SIZE].img;
+		capturedata[prdIdx % BUFFER_SIZE].frame = cap.getFrameCount();
+		++prdIdx;
+	}
+    // TO-do: 重新解耦camera driver模块
+}
 
 void ImageConsProd::ImageConsumer() 
 {
@@ -80,7 +110,11 @@ void ImageConsProd::ImageConsumer()
         multi_armors.clear();
 
         // start camera
-        capture_camera_forward >> frame_forward;
+        while (prdIdx - csmIdx == 0);
+		capturedata[csmIdx % BUFFER_SIZE].img.copyTo(frame_forward);
+		++csmIdx;
+        // capture_camera_forward >> frame_forward;
+
         if (save_result) frame_forward.copyTo(frame_forward_src);
 
         short current_yaw = serial_mul::get_yaw();
