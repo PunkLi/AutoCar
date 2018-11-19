@@ -33,3 +33,4 @@ video/*
 extra/armor_sample/build/*
 extra/train/build/*
 .vscode/*
+html/*

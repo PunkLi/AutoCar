@@ -1,4 +1,5 @@
 # AutoCar
+[![Build Status](https://travis-ci.org/hackath/Sentry.svg?branch=master)](https://travis-ci.org/hackath/Sentry)
 
 This program is detect the armor of robomaster robot, for Robomaster2018.
 

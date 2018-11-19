@@ -12,6 +12,23 @@
 
 #include "common/ImageConsProd.hpp"
 
+class scoped_thread
+{
+    std::thread t;
+public:
+    explicit scoped_thread(std::thread t_)
+        : t(std::move(t_))
+        {
+            if(!t.joinable())
+                throw std::logic_error("No thread");
+        }
+    ~scoped_thread()
+    {
+        t.jion();
+    }
+    scoped_thread(scoped_thread const&) = delete;
+    scoped_thread& operator=(scoped_thread const&) = delete;
+};
 
 int main(int argc, char * argv[])
 {
