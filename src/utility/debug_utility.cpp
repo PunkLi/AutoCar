@@ -41,15 +41,3 @@ void draw_rotated_rect(const cv::Mat &img, const cv::RotatedRect &rect, const cv
     for (int i=0; i<4; i++)
         cv::line(img, vertex[i], vertex[(i+1)%4], color, thickness);
 }
-
-void draw_rotated_rects(const cv::Mat &img, const std::vector<cv::RotatedRect> &rects, const cv::Scalar &color, int thickness, bool tab, const cv::Scalar &text_color)
-{
-    for (unsigned int i = 0; i < rects.size(); ++i)
-    {
-        draw_rotated_rect(img, rects[i], color, thickness);
-        if (tab)
-            cv::putText(img, std::to_string(i + 1), rects[i].center, CV_FONT_ITALIC, 0.5, text_color, 2, 8);
-    }
-}
-
-

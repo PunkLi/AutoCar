@@ -64,7 +64,7 @@ public:
 namespace vision_mul
 {
 /**
- * @brief: 装甲板的位姿信息
+ * @brief: 装甲板的位姿信息，发送给电控的信息
  */
 struct armor_pos
 {
@@ -82,10 +82,7 @@ struct armor_pos
 	}
 	armor_pos()
 	{
-		Flag = 0;
-		angle_x = 0;
-		angle_y = 0;
-		angle_z = 0;
+		reset_pos();
 	}
 };
 
@@ -104,6 +101,25 @@ struct armor_info
 		rect = cv::RotatedRect();
 		state = STILL;
 	}
+};
+
+struct RoboTwist
+{
+	double dx;
+	double dy;
+};
+
+struct RoboTPos
+{
+	cv::Mat rot_;
+	cv::Mat t_;
+};
+
+class RoboTarget
+{
+	std::vector<armor_info> armor_;
+	RoboTwist twist_;
+	RoboTPos pos_;
 };
 
 } // namespace vision_mul

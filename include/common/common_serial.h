@@ -19,13 +19,10 @@ namespace autocar
 namespace serial_mul
 {
 
-short get_yaw();
-short get_pitch();
+extern volatile short Yaw;
+extern volatile short Pitch;
 
 void listen2car();
-/**
- * @brief: 向串口发布armor_pos信息, 单摄像头版本
- */
 void publish2car(const vision_mul::armor_pos& pos,short, short);
 
 } // namespace serial_mul

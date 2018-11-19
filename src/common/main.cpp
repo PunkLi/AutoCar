@@ -24,7 +24,7 @@ public:
         }
     ~scoped_thread()
     {
-        t.jion();
+        t.join();
     }
     scoped_thread(scoped_thread const&) = delete;
     scoped_thread& operator=(scoped_thread const&) = delete;

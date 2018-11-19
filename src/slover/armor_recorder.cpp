@@ -20,7 +20,7 @@ const cv::Point ptoffset = cv::Point(22,0); // 子弹的偏移量 offset x → y
 
 /**
  * @brief 定义一个距离函数，计算装甲片之间姿态的“距离”
- */
+ *
 inline bool pos_distance(const vision_mul::armor_pos& pos1, const vision_mul::armor_pos& last_pos )
 {
     return std::sqrt((pos1.angle_x - last_pos.angle_x) * (pos1.angle_x - last_pos.angle_x) + 
@@ -102,7 +102,7 @@ vision_mul::armor_pos Armor_recorder::SlectFinalArmor(std::vector<vision_mul::ar
         return pos_vect[idx];
     }
     return vision_mul::armor_pos();
-}
+}*/
 
 } // namespace slover
 } // namepsace autocar

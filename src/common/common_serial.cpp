@@ -19,19 +19,9 @@ namespace serial_mul
 #define show_serial_publish
 
 CLinuxSerial serial(0);
-short Yaw    = 0;
-short Pitch  = 0;
 
-short get_yaw() 
-{
-    short a = Yaw;
-    return a;
-}
-short get_pitch() 
-{
-    short b = Pitch;
-    return b;
-}
+volatile short Yaw    = 0;
+volatile short Pitch  = 0;
 
 void listen2car()
 {

@@ -97,17 +97,17 @@ void ImageConsProd::ImageConsumer()
     video_recoder recoder("../video", 640, 480);
 #endif
     cv::Mat frame_forward;
-    cv::Mat frame_forward_src;
+    // cv::Mat frame_forward_src;
 
-    ArmorDetector armor_detector;
-    slover::Armor_recorder armor_recorder;
-    std::vector<armor_info> multi_armors;
+    // ArmorDetector armor_detector;
+    // slover::Armor_recorder armor_recorder;
+    // std::vector<armor_info> multi_armors;
  
     while (true) {
         // some value reset
-        speed_test_begin();
-        armor_pos_.reset_pos();
-        multi_armors.clear();
+        // speed_test_begin();
+        // armor_pos_.reset_pos();
+        // multi_armors.clear();
 
         // start camera
         while (prdIdx - csmIdx == 0);
@@ -115,10 +115,12 @@ void ImageConsProd::ImageConsumer()
 		++csmIdx;
         // capture_camera_forward >> frame_forward;
 
+        // To-do: 内部代码大改，这部分暂时注释
+        /*
         if (save_result) frame_forward.copyTo(frame_forward_src);
 
-        short current_yaw = serial_mul::get_yaw();
-        short current_pitch = serial_mul::get_pitch();
+        short current_yaw = serial_mul::Yaw;
+        short current_pitch = serial_mul::Pitch;
 
         std::cout << "vision_mul: " << current_yaw << ", " << current_pitch << std::endl;
 
@@ -166,6 +168,7 @@ void ImageConsProd::ImageConsumer()
         if(save_result)  // 使用视频不录像
             recoder.save_frame(frame_forward_src); // 录制
 #endif
+        */
 	}   // end while loop
 }
 

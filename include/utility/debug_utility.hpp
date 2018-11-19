@@ -9,7 +9,6 @@
 #include <iostream>
 #include <stdio.h>
 
-
 // 通过v4l2配置摄像头参数
 int set_camera_exposure(std::string id, int val);
 
