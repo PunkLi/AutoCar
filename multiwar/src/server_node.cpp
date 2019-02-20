@@ -6,22 +6,22 @@
 #include <iostream>
 
 #include "udp_broadcast.h"
-#include <detect/armor_goal.h>
+#include <multiwar/share_info.h>
 
 using namespace std;
 
-detect::armor_goal vision_data;
+multiwar::share_info field_info;
 
-void vision_callback(const detect::armor_goal& armor_data)
+void battle_callback(const multiwar::share_info& info)
 {
-        ;
+    ;
 }
 
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "udp_publisher");
     ros::NodeHandle nh;
-    ros::Subscriber sub_vision = nh.subscribe("armor_info", 5, vision_callback); // update data
+    ros::Subscriber sub_vision = nh.subscribe("my_info", 5, battle_callback); // update data
 
     int udp_port = 8888;
     int udp_rate = 10;

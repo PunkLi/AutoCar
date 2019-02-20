@@ -16,6 +16,7 @@ find_package(OpenCV REQUIRED)
 add_message_files(
     FILES
     armor_goal.msg
+    enemy_info.msg
 )
 
 generate_messages(DEPENDENCIES

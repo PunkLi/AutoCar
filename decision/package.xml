@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package>
+  <name>decision</name>
+  <version>1.0.0</version>
+  <description>The decision package</description>
+  <maintainer email="todo@dji.com">dji</maintainer>
+  <license>MIT</license>
+  <build_depend>message_generation</build_depend>
+  <run_depend>message_runtime</run_depend>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>actionlib</build_depend>
+  <build_depend>base_msgs</build_depend>
+  <build_depend>move</build_depend>
+  <build_depend>tf</build_depend>
+  <build_depend>roscpp</build_depend>
+  <run_depend>actionlib</run_depend>
+  <run_depend>tf</run_depend>
+  <run_depend>base_msgs</run_depend>
+  <run_depend>move</run_depend>
+  <run_depend>roscpp</run_depend>
+</package>

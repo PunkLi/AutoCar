@@ -20,6 +20,7 @@
 #include <ros/ros.h>
 #include <serial/gimbal_info.h>
 #include <detect/armor_goal.h>
+#include <detect/enemy_info.h>
 
 namespace detect_mul
 {
@@ -37,6 +38,8 @@ public:
                         boost::bind(&armor_detect_node::gimbal_callback, this, _1));
 
         pub_armor_ = n.advertise<detect::armor_goal>("armor_info", 1000);
+
+        pub_enemy_ = n.advertise<detect::enemy_info>("enemy_info", 1000);
     }
 
     void armor_callback(const sensor_msgs::ImageConstPtr& msg);
@@ -46,7 +49,8 @@ private:
     image_transport::Subscriber sub_img_;
     ros::Subscriber sub_yaw_;
     ros::Publisher  pub_armor_;
-    
+    ros::Publisher  pub_enemy_;
+
     //ArmorDetector armor_detect_;
     //std::vector<armor_info> multi_armors_;
 };

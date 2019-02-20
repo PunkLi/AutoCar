@@ -4,6 +4,6 @@
 	<param name="udp_rate" value="1"/>
 	<param name="udp_lens" value="8"/>	
 	
-	<node pkg="multi-car" type="udp_server" name="udp_publish" output="screen" />
-	<node pkg="multi-car" type="udp_client" name="udp_client" output="screen" />
+	<node pkg="multiwar" type="udp_server" name="to_others" output="screen" />
+	<node pkg="multiwar" type="udp_client" name="other_robots" output="screen" />
 </launch>

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package>
-  <name>multi-car</name>
+  <name>multiwar</name>
   <version>0.0.1</version>
   <description>Broadcasted by UDP between robots, which in the same wlan. </description>
 

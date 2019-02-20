@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.1)
-project(multi-car)
+project(multiwar)
 
 set(CMAKE_CXX_STANDARD 14)
 
@@ -9,6 +9,16 @@ find_package(catkin REQUIRED COMPONENTS
     std_msgs
     message_generation
     detect
+)
+
+add_message_files(
+    FILES
+    share_info.msg
+)
+
+generate_messages(DEPENDENCIES
+    std_msgs  # Or other packages containing msgs
+    geometry_msgs
 )
 
 catkin_package(CATKIN_DEPENDS 

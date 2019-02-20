@@ -2,12 +2,16 @@
 #include <iostream>
 #include <boost/asio.hpp>
 #include <boost/array.hpp>
-
 #include "udp_broadcast.h"
+
+#include <multiwar/share_info.h>
 
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "udp_listener");
+    ros::NodeHandle nh;
+    ros::Publisher pub = nh.advertise<multiwar::share_info>("team_info", 5); // update data
+
     int udp_port = 8888;
     ros::param::get("udp_port",udp_port);
 
