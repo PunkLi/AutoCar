@@ -1,0 +1,8 @@
+<launch>
+
+	<param name="serial_port" value="/dev/ttyUSB0" />
+
+	<node pkg="serial" type="serial_read_node"  name="serial_read_node"  output="screen" />
+	<node pkg="serial" type="serial_write_node" name="serial_write_node" output="screen" />
+	
+</launch>

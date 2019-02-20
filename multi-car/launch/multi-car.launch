@@ -1,0 +1,9 @@
+<launch>
+	<param name="car_id" value="1"/>
+	<param name="udp_port" value="8888" />
+	<param name="udp_rate" value="1"/>
+	<param name="udp_lens" value="8"/>	
+	
+	<node pkg="multi-car" type="udp_server" name="udp_publish" output="screen" />
+	<node pkg="multi-car" type="udp_client" name="udp_client" output="screen" />
+</launch>
