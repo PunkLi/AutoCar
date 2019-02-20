@@ -12,6 +12,8 @@
 #include <ros/ros.h>
 
 #include <serial/gimbal_info.h>
+#include <serial/chassis_info.h>
+
 #include <detect/armor_goal.h>
 
 #include <stdint.h>
@@ -24,13 +26,20 @@ using namespace boost::asio;
 namespace serial_mul
 {
 
-struct vision_goal {
+struct vision_goal 
+{
     uint8_t  sof;
-    uint8_t  flag; 
-    uint16_t yaw;
-    uint16_t pitch;
-    uint8_t  dis;
+
+    uint16_t chassis_angle;
+    uint16_t chassis_v_w;    
+    uint16_t chassis_v_x;
+    uint16_t chassis_v_y; 
+
+    uint16_t gimbal_yaw;
+    uint16_t gimbal_pitch;
+
     uint8_t  end;
+
 }__attribute__((packed));
 
 

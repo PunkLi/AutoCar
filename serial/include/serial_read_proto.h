@@ -10,6 +10,7 @@
 #define _SERIAL_READ_PROTO_H_
 
 #include <ros/ros.h>
+#include <serial/chassis_info.h>
 #include <serial/gimbal_info.h>
 
 #include <stdint.h>
@@ -22,26 +23,34 @@ using namespace boost::asio;
 namespace serial_mul
 {
 
-struct gimbal_pose {
+struct buffer_read 
+{
     uint8_t  sof;
-    uint16_t current_yaw;
-    uint16_t current_pitch;
+
+    int16_t angle;
+    int16_t v_x;
+    int16_t v_y;
+    int16_t v_r;
+
+    int16_t yaw;
+    int16_t pitch;
+
     uint8_t  end;
+
 }__attribute__((packed));
 
 
 
 class serial_read
 {
-    io_service m_ios;				// io_service Object
-	serial_port *pSerialPort;		// Serial port Object
-	std::string port_id;	    	// For save com name
-	boost::system::error_code ec;	// Serial_port function exception
+    buffer_read data;
     
-    uint8_t buf[10];                // buffer
+    int     data_len;
+    int16_t init_yaw;
 
 public:
-    serial::gimbal_info pubData;
+    serial::gimbal_info  gimbal;
+    serial::chassis_info chassis;
 
 public:
     serial_read(): port_id("/dev/ttyUSB0")
@@ -53,30 +62,44 @@ public:
 			if (init_port( port_id, 8 ))
                 cout << "init serial [ " << port_id << " ] success! read data... \n";
 		}
+        data_len = sizeof(data);
+
+        // uint8_t buff[data_len];
+        // read(*pSerialPort, buffer(buff));
+
+        if (data.sof == 0xDA && data.end == 0xDB) init_yaw = data.angle;
+        
     }
     ~serial_read() { if(pSerialPort) delete pSerialPort; }
 
 public:
 	void read_from_serial()
     {
-        async_read( *pSerialPort, buffer(buf), 
-            boost::bind( &serial_read::read_callback, this, boost::asio::placeholders::error) );
+        //async_read( *pSerialPort, buffer(data), 
+        //    boost::bind( &serial_read::read_callback, this, boost::asio::placeholders::error) );
+        // read(...)
     }
 
 	void read_callback(const boost::system::error_code & ec )
     {
         if(!ec)
         {
-            if (buf[0] == 0xDA && buf[6] == 0xDB)  // 这里要加个循环
+            if (data.sof == 0xDA && data.end == 0xDB)
             {
-                pubData.stamp = ros::Time::now();
-                pubData.yaw   = (buf[1]<<8) + buf[2];
-                pubData.pitch = (buf[3]<<8) + buf[4];
+                chassis.stamp = ros::Time::now();
+                chassis.angle = (data.angle - init_yaw) * (M_PI/180.);
+                chassis.v_x   = data.v_x / 1000.;
+                chassis.v_y   = data.v_y / 1000.;
+                chassis.v_r   = data.v_r * (M_PI/180.);
+
+                gimbal.stamp = ros::Time::now();
+                gimbal.yaw   = data.yaw;
+                gimbal.pitch = data.pitch;
             }
         }
         else
         {
-            ; // error
+            ; // Todo: error
         }
     }
 
@@ -95,6 +118,11 @@ private:
     
         return true;
     }
+
+    io_service m_ios;				// io_service Object
+	serial_port *pSerialPort;		// Serial port Object
+	std::string port_id;	    	// For save com name
+	boost::system::error_code ec;	// Serial_port function exception
 };
 
 } // namespace serial_mul
