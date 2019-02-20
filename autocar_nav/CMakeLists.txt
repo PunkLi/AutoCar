@@ -5,4 +5,6 @@ find_package(catkin REQUIRED COMPONENTS
   move_base
 )
 
-catkin_package()
+catkin_package(
+
+)

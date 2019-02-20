@@ -1,0 +1,33 @@
+<launch>
+  <master auto="start"/>
+ 
+  <node name="serial_write" pkg="serial_comm" type="comm_write">
+    <!-- Some param here -->
+  </node>
+    
+  <node name="serial_read" pkg="serial_comm" type="comm_read">
+    <!-- Some param here -->
+  </node>
+ 
+  <!-- Run the rplidar -->
+  <node name="rplidarNode"          pkg="rplidar_ros"  type="rplidarNode" output="screen">
+    <param name="serial_port"         type="string" value="/dev/ttyUSB0"/>  
+    <param name="serial_baudrate"     type="int"    value="115200"/>
+    <param name="frame_id"            type="string" value="laser"/>
+    <param name="inverted"            type="bool"   value="false"/>
+    <param name="angle_compensate"    type="bool"   value="true"/>
+  </node>
+
+  <!-- Run the odometry -->
+  <node pkg="odometry" type="vel2odom" name="odometry_publisher" output="screen"/>
+  
+  <!-- Run the tf -->
+  <node pkg="tf_tree"  type="tf_broadcaster" name="robot_tf_broadcaster" output="screen"/>
+  
+  <!-- Run the slam -->  
+  <include file="$(find autocar_nav)/slam/slam_gmapping.xml"/>  
+ 
+  <!-- Run the rviz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find autocar_nav)/rviz/single_robot.rviz" />
+
+</launch>

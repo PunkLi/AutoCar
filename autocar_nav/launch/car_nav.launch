@@ -2,13 +2,13 @@
   <master auto="start"/>
 
   <!-- Run the map server -->
-  <node name="map_server" pkg="map_server" type="map_server" args="$(find car_2d_nav)/map/07260407MAP.yaml">
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find autocar_nav)/maps/07260407MAP.yaml">
   </node>
 
   <!-- Run the amcl location -->
-  <include file="$(find amcl)/launch/amcl.xml"/>
+  <include file="$(find amcl)/examples/amcl_omni.launch"/>
 
   <!-- Configure the move_base pack -->
-  <include file="$(find move_base)/launch/move_base.xml"/>
+  <include file="$(find autocar_nav)/move_base/move_base.xml"/>
 
 </launch>
