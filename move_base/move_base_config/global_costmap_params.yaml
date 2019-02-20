@@ -1,0 +1,14 @@
+global_costmap:
+  global_frame: /map
+  robot_base_frame: base_link
+  update_frequency: 1
+  static_map: true
+  publish_frequency: 1
+
+  #Cost function parameters
+  inflation_radius: 0.2
+  cost_scaling_factor: 5.0
+
+  rolling_window: false
+  origin_x: -0.58829860544
+  origin_y: -0.0424086388657

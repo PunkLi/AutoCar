@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package>
+  <name>odometry</name>
+  <version>1.0.0</version>
+  <description>The odometry package</description>
+  <maintainer email="todo@dji.com">dji</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>nav_msgs</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>tf</build_depend>
+
+  <build_depend>message_generation</build_depend>
+  <run_depend>message_runtime</run_depend>
+  <run_depend>nav_msgs</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>tf</run_depend>
+  
+</package>

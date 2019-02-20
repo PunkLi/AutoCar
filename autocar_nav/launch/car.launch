@@ -1,0 +1,29 @@
+<launch>
+  <master auto="start"/>
+
+ 
+  <node name="serial_write" pkg="serial_comm" type="comm_write">
+  </node>
+
+ 
+  <node name="serial_read" pkg="serial_comm" type="comm_read">
+  </node>
+
+   <!-- Configure the car_config pack -->
+  <include file="$(find car_2d_nav)/launch/car_config.launch"/>
+  
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find car_2d_nav)/map/07261524MAP.yaml">
+  </node>
+
+  <!-- Run the amcl location -->
+  <include file="$(find amcl)/examples/amcl_omni.launch"/>
+
+ <!-- Configure the move_base pack -->
+  <include file="$(find car_2d_nav)/move_base_config/move_base.xml"/>
+
+  <!-- Run the rosbag -->
+  <!-- 
+  <node pkg="rosbag" type="record" name="bag_record" args="/cmd_vel" />
+  -->
+
+</launch>

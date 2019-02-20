@@ -1,0 +1,16 @@
+<launch>
+  <master auto="start"/>
+
+  <param name="/use_sim_time" value="true"/>
+
+  <!-- Run the Stage Simulator -->
+  <node pkg="stage_ros" type="stageros" name="stageros" args="$(find car_2d_nav)/stage_config/worlds/RMmap-2.world" respawn="false" >
+  </node>
+
+  <!-- Run the slam -->
+  <include file="$(find car_2d_nav)/move_base_config/slam_gmapping_sim.xml"/>  
+  
+  <!-- Run the rviz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find car_2d_nav)/single_robot.rviz" />
+
+</launch>

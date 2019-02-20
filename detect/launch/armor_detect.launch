@@ -1,11 +1,11 @@
 <launch>
 
 	<include file="$(find serial)/launch/serial.launch"/>
-<!--	<include file="$(find multi-car)/launch/multi-car.launch"/>
--->
+	<include file="$(find multi-car)/launch/multi-car.launch"/>
+
 	<node pkg="camera" type="camera_node"  name="camera_node"  output="screen" />
 	<node pkg="detect" type="armor_detect_node"  name="armor_detect_node"  output="screen" />
-
+<!-->
 	<node pkg="recoder" type="recoder_node"  name="recoding"  output="screen" />
-	
+	-->
 </launch>

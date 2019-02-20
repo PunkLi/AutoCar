@@ -1,0 +1,27 @@
+<launch>
+  <master auto="start"/>
+
+  <param name="/use_sim_time" value="true"/>
+
+  <!-- Configure the move_base pack -->
+  <include file="$(find car_2d_nav)/move_base_config/move_base_sim.xml"/>
+
+  <!-- Run the map server -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find car_2d_nav)/stage_config/maps/RMmap-2.pgm 0.05" respawn="false" />
+
+  <!-- Run the amcl location -->
+  <include file="$(find car_2d_nav)/move_base_config/amcl_node_sim.xml"/>
+
+  <!-- Run the Stage Simulator -->
+  <node pkg="stage_ros" type="stageros" name="stageros" args="$(find car_2d_nav)/stage_config/worlds/RMmap-2.world" respawn="false" >
+    <param name="base_watchdog_timeout" value="0.2"/>
+  </node>
+  
+  <!-- Run the fake localization(not used) -->
+  <!-- 
+  <node name="fake_localization" pkg="fake_localization" type="fake_localization" respawn="false" />
+  -->
+
+  <!-- Run the rviz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find car_2d_nav)/single_robot.rviz" />
+</launch>
