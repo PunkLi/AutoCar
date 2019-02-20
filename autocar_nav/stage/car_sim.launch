@@ -10,7 +10,7 @@
   <node name="map_server" pkg="map_server" type="map_server" args="$(find stage)/maps/RMmap-2.pgm 0.05" respawn="false" />
 
   <!-- Run the amcl location -->
-  <include file="$(find car_2d_nav)/move_base_config/amcl_node_sim.xml"/>
+  <include file="$(find amcl)/launch/amcl_node_sim.xml"/>
 
   <!-- Run the Stage Simulator -->
   <node pkg="stage_ros" type="stageros" name="stageros" args="$(find stage)/worlds/RMmap-2.world" respawn="false" >
