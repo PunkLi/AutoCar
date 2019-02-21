@@ -6,7 +6,7 @@
 	<node pkg="camera" type="camera_node"  name="camera_node"  output="screen" />
 	<node pkg="detect" type="armor_detect_node"  name="armor_detect_node"  output="screen" />
 
-	<node pkg="recoder" type="recoder_node"  name="recoding"  output="screen" />
+	<!--node pkg="recoder" type="recoder_node"  name="recoding"  output="screen" /-->
 	
 	<node pkg="odometry" type="vel2odom_node"  name="odometry_node"  output="screen" />
 

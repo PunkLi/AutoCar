@@ -31,13 +31,13 @@ public:
     {
         ros::NodeHandle n;
         image_transport::ImageTransport it(n);
-        sub_img_   = it.subscribe("camera_info", 1, 
+        sub_img_   = it.subscribe("camera_info", 5, 
                         boost::bind(&armor_detect_node::armor_callback, this, _1));
 
-        sub_yaw_   = n.subscribe<serial::car_info>("car_info", 5, 
+        sub_yaw_   = n.subscribe<serial::car_info>("car_info",5, 
                         boost::bind(&armor_detect_node::car_callback, this, _1));
 
-        pub_armor_ = n.advertise<detect::armor_goal>("armor_info", 1000);
+        pub_armor_ = n.advertise<detect::armor_goal>("armor_info", 5);
     }
 
     void armor_callback(const sensor_msgs::ImageConstPtr& msg);
@@ -49,6 +49,7 @@ private:
     ros::Publisher  pub_armor_;
 
     detect::armor_goal armor_info;
+    int detected;
     
     //ArmorDetector armor_detect_;
     //std::vector<armor_info> multi_armors_;

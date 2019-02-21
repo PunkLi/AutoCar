@@ -20,14 +20,15 @@ void armor_detect_node::car_callback(const serial::car_info::ConstPtr &info)
 void armor_detect_node::armor_callback(const sensor_msgs::ImageConstPtr& msg)
 {
     try{
+
         cv::Mat frame = cv_bridge::toCvShare(msg, "bgr8")->image;
-            
+        
         cv::imshow("img", frame);
         cv::waitKey(1);
 
         //multi_armors_.clear();
         //armor_detect_.detect(frame, multi_armors_);
-        // Todo: 加预测....
+
         //if(multi_armors_.size())
         //{
             // pnp
@@ -35,15 +36,21 @@ void armor_detect_node::armor_callback(const sensor_msgs::ImageConstPtr& msg)
             // pub_armor_.publish(armor_pos);
         //}
 
+        // armor detect
+
+        std::vector<geometry_msgs::Point32> multi_goal;
         geometry_msgs::Point32 v1,v2;
+        multi_goal.push_back(v1);
+        multi_goal.push_back(v2);
 
+        // pnp solver
+
+        
+        // DO NOT EDIT!
         armor_info.stamp     = ros::Time::now();
-        armor_info.detected  = 2; // 0 1 2
-        armor_info.multigoal.push_back(v1);
-        armor_info.multigoal.push_back(v2);
-
+        armor_info.detected  = detected;
+        armor_info.multigoal = multi_goal;
         pub_armor_.publish(armor_info);
-
     }
     catch (cv_bridge::Exception& e)
     {

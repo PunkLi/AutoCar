@@ -13,14 +13,24 @@
 
 detect::armor_goal vision_data;
 
-void vision_callback(const detect::armor_goal & armor_data)
+void vision_callback(const detect::armor_goal::ConstPtr & armor_data)
 {
-        ;
+    std::vector<geometry_msgs::Point32>::const_iterator it = armor_data->multigoal.begin();
+
+    cout <<"armor_data->multigoal.size(): "<< armor_data->multigoal.size() << endl;
+
+    for (int i = 0; it != armor_data->multigoal.end(); ++it,++i)
+    {
+        double yaw   = it->x; // yaw
+        double pitch = it->y; // pitch
+        double z     = it->z; // distance
+
+        cout << yaw << "\t" << pitch << "\t" << z << "\t" << i << endl;
+    }
 }
 
 void shoot_callback(const decision::shoot_info & data)
 {
-        ;
 }
 
 int main(int argc, char *argv[])

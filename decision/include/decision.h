@@ -9,11 +9,11 @@ namespace decision_mul
 
 enum RobotState
 {
-    IDLE_STATE,        // 空闲
-    ATTACK_STATE,         // 攻击 
-    BACK_STATE           // 防御
+    IDLE_STATE,
+    ATTACK_STATE,
+    BACK_STATE
 };
 
-
 }
+
 #endif // LOGICALCORE_H
