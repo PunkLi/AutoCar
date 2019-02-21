@@ -11,10 +11,10 @@
 namespace detect_mul
 {
 
-void armor_detect_node::gimbal_callback(const serial::car_info::ConstPtr &gimbal_info)
+void armor_detect_node::car_callback(const serial::car_info::ConstPtr &info)
 {
-    double gimbal_yaw_   = gimbal_info->yaw;
-    double gimbal_pitch_ = gimbal_info->yaw;
+    double gimbal_yaw   = info->yaw;
+    double gimbal_pitch = info->yaw;
 }
 
 void armor_detect_node::armor_callback(const sensor_msgs::ImageConstPtr& msg)
@@ -34,6 +34,16 @@ void armor_detect_node::armor_callback(const sensor_msgs::ImageConstPtr& msg)
             // detect::armor_goal armor_pos = what?
             // pub_armor_.publish(armor_pos);
         //}
+
+        geometry_msgs::Point32 v1,v2;
+
+        armor_info.stamp     = ros::Time::now();
+        armor_info.detected  = 2; // 0 1 2
+        armor_info.multigoal.push_back(v1);
+        armor_info.multigoal.push_back(v2);
+
+        pub_armor_.publish(armor_info);
+
     }
     catch (cv_bridge::Exception& e)
     {

@@ -9,6 +9,7 @@ find_package(catkin REQUIRED COMPONENTS
     image_transport
     roscpp
     std_msgs
+    geometry_msgs
 )
 
 find_package(OpenCV REQUIRED)
@@ -16,11 +17,10 @@ find_package(OpenCV REQUIRED)
 add_message_files(
     FILES
     armor_goal.msg
-    enemy_info.msg
 )
 
 generate_messages(DEPENDENCIES
-    std_msgs  # Or other packages containing msgs
+    geometry_msgs
 )
 
 catkin_package( CATKIN_DEPENDS
@@ -28,6 +28,7 @@ catkin_package( CATKIN_DEPENDS
     image_transport
     roscpp
     std_msgs
+    geometry_msgs
 )
 
 include_directories(

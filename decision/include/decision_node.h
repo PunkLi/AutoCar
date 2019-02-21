@@ -6,7 +6,7 @@
 #include <geometry_msgs/PoseWithCovarianceStamped.h>
 
 #include <move_base_msgs/MoveBaseAction.h>
-#include <detect/enemy_info.h>
+#include <detect/armor_goal.h>
 #include <multiwar/share_info.h>
 #include <decision/shoot_info.h>
 
@@ -16,28 +16,28 @@ namespace decision_mul
 class decision_node
 {
     ros::Subscriber sub_mine_pos;
-    ros::Subscriber sub_enemy_info;
-    ros::Subscriber sub_share_info;
-    ros::Publisher  pub_share_info;
-    ros::Publisher  pub_shoot_info;
+    ros::Subscriber sub_armor;
+    ros::Subscriber sub_network;
+    ros::Publisher  pub_network;
+    ros::Publisher  pub_shoot;
 
 public:
     decision_node()
     {
         ros::NodeHandle nh;
 
-        sub_mine_pos    = nh.subscribe<geometry_msgs::PoseWithCovarianceStamped>("amcl_pose", 5, 
+        sub_mine_pos = nh.subscribe<geometry_msgs::PoseWithCovarianceStamped>("amcl_pose", 5, 
                                             boost::bind(&decision_node::pos_callback, this, _1));
 
-        sub_enemy_info  = nh.subscribe<detect::enemy_info>("enemy_info", 5, 
+        sub_armor    = nh.subscribe<detect::armor_goal>("armor_info", 5, 
                                             boost::bind(&decision_node::enemy_callback, this, _1));
 
-        sub_share_info  = nh.subscribe<multiwar::share_info>("team_info", 5, 
+        sub_network  = nh.subscribe<multiwar::share_info>("team_info", 5, 
                                             boost::bind(&decision_node::multiwar_callback, this, _1));
 
-        pub_share_info  = nh.advertise<multiwar::share_info>("my_info", 1000);
+        pub_network  = nh.advertise<multiwar::share_info>("my_info", 1000);
 
-        pub_shoot_info  = nh.advertise<decision::shoot_info>("shoot_info", 1000);
+        pub_shoot    = nh.advertise<decision::shoot_info>("shoot_info", 1000);
         
     }
     void pos_callback(const geometry_msgs::PoseWithCovarianceStamped::ConstPtr &pos)
@@ -45,7 +45,7 @@ public:
         ; // todo
     }
 
-    void enemy_callback(const detect::enemy_info::ConstPtr & enemy)
+    void enemy_callback(const detect::armor_goal::ConstPtr & enemy)
     {
         ; // todo
     }

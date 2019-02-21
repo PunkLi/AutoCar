@@ -1,5 +1,3 @@
-bool    detected
-float32 yaw
-float32 pitch
-float32 distance
-time    stamp
+time   stamp
+uint8  detected
+geometry_msgs/Point32[] multigoal

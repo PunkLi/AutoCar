@@ -13,6 +13,7 @@
 #include <image_transport/image_transport.h>
 #include <cv_bridge/cv_bridge.h>
 #include <sensor_msgs/image_encodings.h>
+#include <geometry_msgs/Point32.h>
 
 #include <armor_info.h>
 #include <armor_detect.h>
@@ -20,7 +21,6 @@
 #include <ros/ros.h>
 #include <serial/car_info.h>
 #include <detect/armor_goal.h>
-#include <detect/enemy_info.h>
 
 namespace detect_mul
 {
@@ -35,22 +35,21 @@ public:
                         boost::bind(&armor_detect_node::armor_callback, this, _1));
 
         sub_yaw_   = n.subscribe<serial::car_info>("car_info", 5, 
-                        boost::bind(&armor_detect_node::gimbal_callback, this, _1));
+                        boost::bind(&armor_detect_node::car_callback, this, _1));
 
         pub_armor_ = n.advertise<detect::armor_goal>("armor_info", 1000);
-
-        pub_enemy_ = n.advertise<detect::enemy_info>("enemy_info", 1000);
     }
 
     void armor_callback(const sensor_msgs::ImageConstPtr& msg);
-    void gimbal_callback(const serial::car_info::ConstPtr &gimbal_info);
+    void car_callback(const serial::car_info::ConstPtr &gimbal_info);
 
 private:
     image_transport::Subscriber sub_img_;
     ros::Subscriber sub_yaw_;
     ros::Publisher  pub_armor_;
-    ros::Publisher  pub_enemy_;
 
+    detect::armor_goal armor_info;
+    
     //ArmorDetector armor_detect_;
     //std::vector<armor_info> multi_armors_;
 };

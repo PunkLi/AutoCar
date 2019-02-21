@@ -11,8 +11,6 @@
 
 #include <ros/ros.h>
 
-#include <serial/gimbal_info.h>
-#include <serial/chassis_info.h>
 
 #include <detect/armor_goal.h>
 
@@ -70,7 +68,7 @@ public:
         uint8_t data[10];
 
         size_t len = write( *pSerialPort, buffer( data ), ec );
-        cout << "send length: " << len << "\tbuf: " << data << "\n";
+        //cout << "send length: " << len << "\tbuf: " << data << "\n";
     }
 
 private:

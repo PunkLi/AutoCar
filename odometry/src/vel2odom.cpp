@@ -18,16 +18,16 @@ void vel2odom::cal_odom()
     //since all odometry is 6DOF we'll need a quaternion created from yaw
     odom_quat = tf::createQuaternionMsgFromYaw(angle);
 
-    std::cout<<"Vx  "<<v_x<<std::endl;
-    std::cout<<"Vy  "<<v_y<<std::endl;
+    //std::cout<<"Vx  "<<v_x<<std::endl;
+    //std::cout<<"Vy  "<<v_y<<std::endl;
     
     int thetaPeriodCount    = (int)(angle/2/3.1415926);
     float thetaNormal       = angle - thetaPeriodCount*(2*3.1415926);
     float thetaNormalDegree = thetaNormal * (180/3.1415926);
     
-    std::cout<<"theta   "<<thetaNormalDegree<<std::endl;
-    std::cout<<"X  "<<x<<std::endl;
-    std::cout<<"Y  "<<y<<std::endl;
+    //std::cout<<"theta   "<<thetaNormalDegree<<std::endl;
+    //std::cout<<"X  "<<x<<std::endl;
+    //std::cout<<"Y  "<<y<<std::endl;
 }
 
 } // namespace odom_mul
