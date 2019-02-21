@@ -11,7 +11,7 @@
 namespace detect_mul
 {
 
-void armor_detect_node::gimbal_callback(const serial::gimbal_info::ConstPtr &gimbal_info)
+void armor_detect_node::gimbal_callback(const serial::car_info::ConstPtr &gimbal_info)
 {
     double gimbal_yaw_   = gimbal_info->yaw;
     double gimbal_pitch_ = gimbal_info->yaw;

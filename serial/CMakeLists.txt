@@ -10,8 +10,7 @@ find_package(catkin REQUIRED COMPONENTS
 
 add_message_files(
     FILES
-    chassis_info.msg
-    gimbal_info.msg
+    car_info.msg
 )
 
 generate_messages(DEPENDENCIES

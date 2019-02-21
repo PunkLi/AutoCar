@@ -2,12 +2,12 @@
 #include <ros/ros.h>
 #include <tf/transform_broadcaster.h>
 #include <nav_msgs/Odometry.h>
-#include "serial/chassis_info.h"
+#include "serial/car_info.h"
 #include "vel2odom.h"
 
 odom_mul::vel2odom solver;
 
-void speed2pos(const serial::chassis_info car_vel)
+void speed2pos(const serial::car_info & car_vel)
 {
     solver.angle  = car_vel.angle;
     solver.v_x    = car_vel.v_x;
@@ -20,7 +20,7 @@ int main(int argc, char** argv)
     ros::init(argc, argv, "odometry_publisher");
 
     ros::NodeHandle n;
-    ros::Subscriber sub = n.subscribe("chassis_info", 1000, speed2pos);
+    ros::Subscriber sub = n.subscribe("car_info", 1000, speed2pos);
     ros::Publisher pub  = n.advertise<nav_msgs::Odometry>("odom", 50);
 
     tf::TransformBroadcaster odom_broadcaster;

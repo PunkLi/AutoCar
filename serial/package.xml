@@ -6,7 +6,7 @@
   
   <maintainer email="lichunpeng2200@outlook.com">skystarry</maintainer>
 
-  <license>BSD 2-Clause</license>
+  <license>BSD</license>
 
   <buildtool_depend>catkin</buildtool_depend>
 

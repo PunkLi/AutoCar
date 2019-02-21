@@ -8,17 +8,13 @@
 
 #include <ros/ros.h>
 #include "serial_read_proto.h"
-
+#include <serial/car_info.h>
 
 int main(int argc, char *argv[])
 {
     ros::init(argc, argv, "serial_Read");
     ros::NodeHandle nh;
-    ros::Publisher pub_chassis;
-    ros::Publisher pub_gimbal;
-
-    pub_chassis = nh.advertise<serial::chassis_info>("chassis_info", 100);
-    pub_gimbal  = nh.advertise<serial::gimbal_info>("gimbal_info", 100);
+    ros::Publisher pub = nh.advertise<serial::car_info>("car_info", 100);
 
     ros::Rate loopRate(50);
 
@@ -30,8 +26,7 @@ int main(int argc, char *argv[])
         ros::spinOnce();
         serial.read_from_serial();
 
-        pub_chassis.publish(serial.chassis);
-        pub_gimbal.publish(serial.gimbal);
+        pub.publish(serial.info);
         
         loopRate.sleep();
     }

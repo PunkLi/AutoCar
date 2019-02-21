@@ -14,6 +14,10 @@ find_package(catkin REQUIRED COMPONENTS
 )
 find_package(OpenCV REQUIRED)
 
+add_message_files(
+    FILES
+    shoot_info.msg
+)
 
 generate_messages(
    DEPENDENCIES

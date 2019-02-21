@@ -8,6 +8,7 @@
 #include <move_base_msgs/MoveBaseAction.h>
 #include <detect/enemy_info.h>
 #include <multiwar/share_info.h>
+#include <decision/shoot_info.h>
 
 namespace decision_mul
 {
@@ -18,6 +19,7 @@ class decision_node
     ros::Subscriber sub_enemy_info;
     ros::Subscriber sub_share_info;
     ros::Publisher  pub_share_info;
+    ros::Publisher  pub_shoot_info;
 
 public:
     decision_node()
@@ -34,6 +36,8 @@ public:
                                             boost::bind(&decision_node::multiwar_callback, this, _1));
 
         pub_share_info  = nh.advertise<multiwar::share_info>("my_info", 1000);
+
+        pub_shoot_info  = nh.advertise<decision::shoot_info>("shoot_info", 1000);
         
     }
     void pos_callback(const geometry_msgs::PoseWithCovarianceStamped::ConstPtr &pos)

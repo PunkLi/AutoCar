@@ -18,7 +18,7 @@
 #include <armor_detect.h>
 
 #include <ros/ros.h>
-#include <serial/gimbal_info.h>
+#include <serial/car_info.h>
 #include <detect/armor_goal.h>
 #include <detect/enemy_info.h>
 
@@ -34,7 +34,7 @@ public:
         sub_img_   = it.subscribe("camera_info", 1, 
                         boost::bind(&armor_detect_node::armor_callback, this, _1));
 
-        sub_yaw_   = n.subscribe<serial::gimbal_info>("gimbal_info", 5, 
+        sub_yaw_   = n.subscribe<serial::car_info>("car_info", 5, 
                         boost::bind(&armor_detect_node::gimbal_callback, this, _1));
 
         pub_armor_ = n.advertise<detect::armor_goal>("armor_info", 1000);
@@ -43,7 +43,7 @@ public:
     }
 
     void armor_callback(const sensor_msgs::ImageConstPtr& msg);
-    void gimbal_callback(const serial::gimbal_info::ConstPtr &gimbal_info);
+    void gimbal_callback(const serial::car_info::ConstPtr &gimbal_info);
 
 private:
     image_transport::Subscriber sub_img_;

@@ -10,8 +10,7 @@
 #define _SERIAL_READ_PROTO_H_
 
 #include <ros/ros.h>
-#include <serial/chassis_info.h>
-#include <serial/gimbal_info.h>
+#include <serial/car_info.h>
 
 #include <stdint.h>
 #include <boost/asio.hpp>
@@ -49,8 +48,7 @@ class serial_read
     int16_t init_yaw;
 
 public:
-    serial::gimbal_info  gimbal;
-    serial::chassis_info chassis;
+    serial::car_info info;
 
 public:
     serial_read(): port_id("/dev/ttyUSB0")
@@ -86,15 +84,15 @@ public:
         {
             if (data.sof == 0xDA && data.end == 0xDB)
             {
-                chassis.stamp = ros::Time::now();
-                chassis.angle = (data.angle - init_yaw) * (M_PI/180.);
-                chassis.v_x   = data.v_x / 1000.;
-                chassis.v_y   = data.v_y / 1000.;
-                chassis.v_r   = data.v_r * (M_PI/180.);
+                info.stamp = ros::Time::now();
+                info.angle = (data.angle - init_yaw) * (M_PI/180.);
+                info.v_x   = data.v_x / 1000.;
+                info.v_y   = data.v_y / 1000.;
+                info.v_r   = data.v_r * (M_PI/180.);
 
-                gimbal.stamp = ros::Time::now();
-                gimbal.yaw   = data.yaw;
-                gimbal.pitch = data.pitch;
+                info.stamp = ros::Time::now();
+                info.yaw   = data.yaw;
+                info.pitch = data.pitch;
             }
         }
         else
