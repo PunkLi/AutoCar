@@ -1,0 +1,310 @@
+<?xml version="1.0"?>  
+<robot name="smartcar" xmlns:xacro="http://ros.org/wiki/xacro">  
+  <xacro:property name="M_PI" value="3.14159"/>    
+  <!-- Macro for SmartCar body. Including Gazebo extensions, but does not include Kinect -->  
+  <xacro:include filename="$(find smartcar_description)/urdf/gazebo.urdf.xacro"/>  
+  <xacro:property name="base_x" value="0.33" />  
+  <xacro:property name="base_y" value="0.33" />  
+  <xacro:macro name="smartcar_body">  
+    <link name="base_link">  
+    <inertial>  
+      <origin xyz="0 0 0.055"/>  
+      <mass value="1.0" />  
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>  
+    </inertial>  
+    <visual>  
+      <geometry>  
+        <box size="0.25 .16 .05"/>  
+      </geometry>  
+      <origin rpy="0 0 0" xyz="0 0 0.055"/> 
+      <material name="blue">  
+      <color rgba="0 0 .8 1"/>  
+      </material>  
+   </visual>  
+   <collision>  
+      <origin rpy="0 0 0" xyz="0 0 0.055"/>  
+      <geometry>  
+        <box size="0.25 .16 .05" />  
+      </geometry>  
+    </collision>  
+  </link>  
+
+ <link name="left_front_wheel">  
+    <inertial>  
+      <origin  xyz="0.08 0.08 0.025"/>  
+      <mass value="0.1" />  
+       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>  
+    </inertial>  
+
+    <visual>  
+      <geometry>  
+        <cylinder length=".02" radius="0.025"/>  
+      </geometry>  
+      <material name="black">  
+        <color rgba="0 0 0 1"/>  
+      </material>  
+    </visual>  
+    <collision>  
+      <origin rpy="0 1.57075 1.57075" xyz="0.08 0.08 0.025"/>  
+      <geometry>  
+         <cylinder length=".02" radius="0.025"/>  
+      </geometry>  
+    </collision>  
+  </link>  
+
+  <joint name="left_front_wheel_joint" type="continuous">  
+    <axis xyz="0 0 1"/>  
+    <parent link="base_link"/>  
+    <child link="left_front_wheel"/>  
+    <origin rpy="0 1.57075 1.57075" xyz="0.08 0.08 0.025"/>  
+    <limit effort="100" velocity="100"/>  
+    <joint_properties damping="0.0" friction="0.0"/>  
+  </joint>  
+
+  <link name="right_front_wheel">  
+
+    <inertial>  
+
+      <origin xyz="0.08 -0.08 0.025"/>  
+
+      <mass value="0.1" />  
+
+       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>  
+
+    </inertial>  
+
+    <visual>  
+
+      <geometry>  
+
+        <cylinder length=".02" radius="0.025"/>  
+
+      </geometry>  
+
+      <material name="black">  
+
+        <color rgba="0 0 0 1"/>  
+
+      </material>  
+
+    </visual>  
+
+    <collision>  
+
+      <origin rpy="0 1.57075 1.57075" xyz="0.08 -0.08 0.025"/>  
+
+      <geometry>  
+
+         <cylinder length=".02" radius="0.025"/>  
+
+      </geometry>  
+
+    </collision>  
+
+  </link>  
+
+ 
+
+  <joint name="right_front_wheel_joint" type="continuous">  
+
+    <axis xyz="0 0 1"/>  
+
+    <parent link="base_link"/>  
+
+    <child link="right_front_wheel"/>  
+
+    <origin rpy="0 1.57075 1.57075" xyz="0.08 -0.08 0.025"/>  
+
+    <limit effort="100" velocity="100"/>  
+
+    <joint_properties damping="0.0" friction="0.0"/>  
+
+ </joint>  
+
+ 
+
+ <link name="left_back_wheel">  
+
+    <inertial>  
+
+      <origin xyz="-0.08 0.08 0.025"/>  
+
+      <mass value="0.1" />  
+
+       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>  
+
+    </inertial>  
+
+    <visual>  
+
+      <geometry>  
+
+        <cylinder length=".02" radius="0.025"/>  
+
+      </geometry>  
+
+      <material name="black">  
+
+        <color rgba="0 0 0 1"/>  
+
+      </material>  
+
+   </visual>  
+
+   <collision>  
+
+       <origin rpy="0 1.57075 1.57075" xyz="-0.08 0.08 0.025"/>  
+
+      <geometry>  
+
+         <cylinder length=".02" radius="0.025"/>  
+
+      </geometry>  
+
+    </collision>  
+
+  </link>  
+
+ 
+
+  <joint name="left_back_wheel_joint" type="continuous">  
+
+    <axis xyz="0 0 1"/>  
+
+    <parent link="base_link"/>  
+
+    <child link="left_back_wheel"/>  
+
+    <origin rpy="0 1.57075 1.57075" xyz="-0.08 0.08 0.025"/>  
+
+    <limit effort="100" velocity="100"/>  
+
+    <joint_properties damping="0.0" friction="0.0"/>  
+
+  </joint>  
+
+ 
+
+  <link name="right_back_wheel">  
+
+    <inertial>  
+
+       <origin xyz="-0.08 -0.08 0.025"/>  
+
+       <mass value="0.1" />  
+
+       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>  
+
+    </inertial>  
+
+    <visual>  
+
+      <geometry>  
+
+        <cylinder length=".02" radius="0.025"/>  
+
+      </geometry>  
+
+      <material name="black">  
+
+        <color rgba="0 0 0 1"/>  
+
+      </material>  
+
+   </visual>  
+
+   <collision>  
+
+      <origin rpy="0 1.57075 1.57075" xyz="-0.08 -0.08 0.025"/>  
+
+      <geometry>  
+
+         <cylinder length=".02" radius="0.025"/>  
+
+      </geometry>  
+
+    </collision>  
+
+  </link>  
+
+ 
+
+ 
+
+  <joint name="right_back_wheel_joint" type="continuous">  
+
+    <axis xyz="0 0 1"/>  
+
+    <parent link="base_link"/>  
+
+    <child link="right_back_wheel"/>  
+
+    <origin rpy="0 1.57075 1.57075" xyz="-0.08 -0.08 0.025"/>  
+
+    <limit effort="100" velocity="100"/>  
+
+    <joint_properties damping="0.0" friction="0.0"/>  
+
+  </joint>  
+
+ 
+
+  <link name="head">  
+
+    <inertial>  
+
+      <origin xyz="0.08 0 0.08"/>  
+
+      <mass value="0.1" />  
+
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>  
+
+    </inertial>  
+
+    <visual>  
+
+      <geometry>  
+
+        <box size=".02 .03 .03"/>  
+
+      </geometry>  
+
+      <material name="white">  
+
+        <color rgba="1 1 1 1"/>  
+
+      </material>  
+
+     </visual>  
+
+     <collision>  
+
+      <origin xyz="0.08 0 0.08"/>  
+
+      <geometry>  
+
+         <cylinder length=".02" radius="0.025"/>  
+
+      </geometry>  
+
+    </collision>  
+
+  </link>  
+
+ 
+
+  <joint name="tobox" type="fixed">  
+
+    <parent link="base_link"/>  
+
+    <child link="head"/>  
+
+    <origin xyz="0.08 0 0.08"/>  
+
+  </joint>  
+
+  </xacro:macro>  
+
+ 
+
+</robot>
