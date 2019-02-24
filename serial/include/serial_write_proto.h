@@ -24,22 +24,19 @@ using namespace boost::asio;
 namespace serial_mul
 {
 
-struct vision_goal 
+struct buffer_write
 {
-    uint8_t  sof;
+    uint8_t sof;
+    int16_t auto_vx;     // advacne control speed
+    int16_t auto_vy;     // translation control speed
+    int16_t auto_vw;     // steering control speed
 
-    uint16_t chassis_angle;
-    uint16_t chassis_v_w;    
-    uint16_t chassis_v_x;
-    uint16_t chassis_v_y; 
+    int16_t yaw;
+    int16_t pitch;
 
-    uint16_t gimbal_yaw;
-    uint16_t gimbal_pitch;
+    uint8_t end;
 
-    uint8_t  end;
-
-}__attribute__((packed));
-
+}__attribute__((packed)) data_t;
 
 class serial_write
 {

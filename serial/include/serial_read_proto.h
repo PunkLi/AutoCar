@@ -25,14 +25,18 @@ namespace serial_mul
 struct buffer_read 
 {
     uint8_t  sof;
+    
+    int16_t  uwb_x;
+    int16_t  uwb_y;
+    uint16_t uwb_angle;
 
-    int16_t angle;
-    int16_t v_x;
-    int16_t v_y;
-    int16_t v_r;
+    int16_t  angle;
+    int16_t  v_x;
+    int16_t  v_y;
+    int16_t  v_r;
 
-    int16_t yaw;
-    int16_t pitch;
+    int16_t  yaw;
+    int16_t  pitch;
 
     uint8_t  end;
 
